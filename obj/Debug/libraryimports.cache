@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Paths>
+  <ManifestDocuments>
+    <ManifestDocument>obj\Debug\__library_projects__\Cognitive.Face.Droid\library_project_imports\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\Cognitive.Face.Droid\library_project_imports\aapt\AndroidManifest.xml</ManifestDocument>
+  </ManifestDocuments>
+  <NativeLibraries />
+  <Jars>
+    <Jar>obj\Debug\__library_projects__\Cognitive.Face.Droid\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\GoogleGson\library_project_imports\gson.jar</Jar>
+  </Jars>
+</Paths>

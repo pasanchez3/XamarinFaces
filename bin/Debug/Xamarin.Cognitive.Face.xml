@@ -1,0 +1,1954 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xamarin.Cognitive.Face</name>
+    </assembly>
+    <members>
+        <member name="T:Xamarin.Cognitive.Face.Extensions.FaceExtensions">
+            <summary>
+            Contains extension methods for working with <see cref="N:Xamarin.Cognitive.Face"/>.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.GetFormattedGroupName(Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Gets the name of the PersonGroup formatted with its person count.
+            </summary>
+            <returns>The formatted group name.</returns>
+            <param name="personGroup">Person group.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.CreateThumbnail(Xamarin.Cognitive.Face.Model.Face,Android.Graphics.Bitmap)">
+            <summary>
+            Creates a thumbnail image for a given Face.
+            </summary>
+            <returns>The thumbnail image.</returns>
+            <param name="face">The Face to generate a thumbnail for.</param>
+            <param name="sourceImage">The source image or photo to crop the thumbnail from.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.GenerateThumbnails(System.Collections.Generic.List{Xamarin.Cognitive.Face.Model.Face},Android.Graphics.Bitmap,System.Collections.Generic.List{Android.Graphics.Bitmap})">
+            <summary>
+            Generates the thumbnail images for a given set of Faces from a given photo.
+            </summary>
+            <returns>The thumbnail images.</returns>
+            <param name="faces">The set of faces to generate thumbnail images for.</param>
+            <param name="photo">The source image or photo to crop the thumbnails from.</param>
+            <param name="thumbnailList">Optional existing thumbnail list to append to.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.SaveThumbnail(Xamarin.Cognitive.Face.Model.Face,Android.Graphics.Bitmap)">
+            <summary>
+            Saves the thumbnail image using the Face's current thumbnail path.
+            </summary>
+            <param name="face">Face.</param>
+            <param name="thumbnail">Thumbnail image.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.SaveThumbnailFromSource(Xamarin.Cognitive.Face.Model.Face,Android.Graphics.Bitmap)">
+            <summary>
+            Saves a thumbnail from a source image, using the Face's FaceRectangle and ThumbnailPath.
+            </summary>
+            <param name="face">The Face to save a thumbnail for.</param>
+            <param name="sourceImage">The source image where the thumbnail will be cropped from.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.GetThumbnailImage(Xamarin.Cognitive.Face.Model.Face)">
+            <summary>
+            Gets the thumbnail image for the given Face.  This assumes the thumbnail has already been saved using the <see cref="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.SaveThumbnail(Xamarin.Cognitive.Face.Model.Face,Android.Graphics.Bitmap)"/> method.
+            </summary>
+            <returns>The thumbnail image.</returns>
+            <param name="face">Face.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.CalculateLargeFaceRectangle(Xamarin.Cognitive.Face.Model.Face,Android.Graphics.Bitmap,System.Double)">
+            <summary>
+            Resize face rectangle, for better view of the person.
+            To make the rectangle larger, faceRectEnlargeRatio should be larger than 1, recommended value (and default) is 1.3.
+            </summary>
+            <returns>The resized face rectangle.</returns>
+            <param name="face">The Face to calculate a new face renctagle for.</param>
+            <param name="bitmap">the source Bitmap.</param>
+            <param name="faceRectEnlargeRatio">Face rect enlarge ratio.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.DrawFaceRectangles(Android.Graphics.Bitmap,System.Collections.Generic.IEnumerable{Xamarin.Cognitive.Face.Model.Face},System.Boolean,System.Double)">
+            <summary>
+            Draw detected face rectangles in the original image. And return the image drawn.
+            If drawLandmarks is set to be true, draw the five main landmarks of each face.
+            </summary>
+            <returns>A new bitmap with face rectangles drawn.  Note: original bitmap will remain as is and is not disposed/released.</returns>
+            <param name="originalBitmap">Original bitmap.</param>
+            <param name="faces">Faces.</param>
+            <param name="drawLandmarks">If set to <c>true</c> draw landmarks.</param>
+            <param name="faceRectEnlargeRatio">A scale factor that dicatates how much the face rectangles should be enlarged, if at all.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.FaceExtensions.UpdateThumbnailPath(Xamarin.Cognitive.Face.Model.Face)">
+            <summary>
+            Updates the thumbnail path of the Face.  This will use the current Id to generate the thumbnail path for this Face.
+            </summary>
+            <param name="face">The <see cref="N:Xamarin.Cognitive.Face"/>.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Extensions.MediaExtensions">
+            <summary>
+            Contains extension methods for working with media: images, etc.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.AsJpegStream(Android.Graphics.Bitmap,System.Int32)">
+            <summary>
+            Gets the given Bitmap as a JPEG Stream and resets the stream position to 0.
+            </summary>
+            <returns>A Stream with the image data.</returns>
+            <param name="image">The Bitmap image.</param>
+            <param name="quality">The quality factor to use when compressing as a JPEG.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.SaveAsJpeg(Android.Graphics.Bitmap,System.String,System.Int32)">
+            <summary>
+            Saves the image in the JPEG format at the given path.
+            </summary>
+            <param name="image">Image.</param>
+            <param name="path">Path.</param>
+            <param name="quality">The quality factor to use when compressing as a JPEG.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.Crop(Android.Graphics.Bitmap,System.Drawing.RectangleF)">
+            <summary>
+            Crops the specified image using the rectangle.
+            </summary>
+            <returns>The cropped image.</returns>
+            <param name="image">Image.</param>
+            <param name="rect">Rect.</param>
+            <remarks>The original image is not disposed of or released in any way.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.LoadSizeLimitedBitmapFromUri(Android.Content.ContentResolver,Android.Net.Uri,System.Int32)">
+            <summary>
+            Decode image from imageUri, and resize according to the expectedMaxImageSideLength
+            If expectedMaxImageSideLength is
+                (1) less than or equal to 0,
+                (2) more than the actual max size length of the bitmap
+                then return the original bitmap
+            Else, return the scaled bitmap
+            </summary>
+            <returns>The size limited bitmap from URI.</returns>
+            <param name="contentResolver">Content resolver.</param>
+            <param name="imageUri">Image URI.</param>
+            <param name="maxImageSideLength">The maximum side length of the image to detect, to keep the size of image less than 4MB.  Resize the image if its side length is larger than the maximum.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.calculateSampleSize(System.Int32,System.Int32)">
+            <summary>
+            Return the number of times for the image to shrink when loading it into memory.
+            The SampleSize can only be a final value based on powers of 2.
+            </summary>
+            <returns>The sample size.</returns>
+            <param name="maxSideLength">Max side length.</param>
+            <param name="expectedMaxImageSideLength">Expected max image side length.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.GetImageRotationAngle(Android.Net.Uri,Android.Content.ContentResolver)">
+            <summary>
+            Get the rotation angle of the image taken.
+            </summary>
+            <returns>The image rotation angle.</returns>
+            <param name="imageUri">Image URI.</param>
+            <param name="contentResolver">Content resolver.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.RotateBitmap(Android.Graphics.Bitmap,System.Int32)">
+            <summary>
+            Rotate the original bitmap according to the given orientation angle.
+            </summary>
+            <returns>The bitmap.</returns>
+            <param name="bitmap">Bitmap.</param>
+            <param name="angle">Angle.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.MediaExtensions.AddHighlight(Android.Graphics.Bitmap,System.String)">
+            <summary>
+            Draws a highlight around the face thumbnail.
+            </summary>
+            <returns>The highlighted face thumbnail.  Note this is a new bitmap and the original is not disposed.</returns>
+            <param name="thumbnail">Original bitmap.</param>
+            <param name="colorHex">The hex code of the desired color to highlight with.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Extensions.JavaInteropExtensions">
+            <summary>
+            Contains extension methods for working with and mapping native Java/Android types.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Extensions.MappingExtensions">
+            <summary>
+            Contains extension methods for working with and mapping native Droid.Contact.* types from the bound Android Face SDK.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Extensions.StringExtensions">
+            <summary>
+            String extensions.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.StringExtensions.AsEnum``1(System.String,System.Boolean)">
+            <summary>
+            Converts this string into the specified enum type.
+            </summary>
+            <returns>The enum.</returns>
+            <param name="str">String.</param>
+            <param name="caseInsensitive">If set to <c>true</c> case insensitive.</param>
+            <typeparam name="TEnum">The type of enum to convert this string to.</typeparam>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Extensions.StringExtensions.FirstCharacterToLower(System.String)">
+            <summary>
+            Returns this string with the first character as lowercase.
+            </summary>
+            <returns>The string with its first character to lowercase.</returns>
+            <param name="str">The string to lowercase-ize.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.FaceClient">
+            <summary>
+            Face client is used to communicate with the Face API.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.UpdatePersonGroup(System.String,System.String,System.String)">
+            <summary>
+            Updates a PersonGroup with the given name and (optionally) custom user data.
+            </summary>
+            <param name="personGroupId">The Id of the PersonGroup to update.</param>
+            <param name="groupName">The updated name of the group.</param>
+            <param name="userData">An updated custom user data string to store with the group.</param>
+            <remarks>Note that this method does not perform or respect any caching - any cached group loaded via <see cref="M:Xamarin.Cognitive.Face.FaceClient.GetPersonGroups(System.Boolean)"/> or similar methods will not be affected.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePersonGroup(System.String)">
+            <summary>
+            Deletes a PersonGroup with the given <c>personGroupId</c>.
+            </summary>
+            <param name="personGroupId">The Id of the PersonGroup to delete.</param>
+            <remarks>Note that this method does not perform or respect any caching - any cached group loaded via <see cref="M:Xamarin.Cognitive.Face.FaceClient.GetPersonGroups(System.Boolean)"/> or similar methods will not be affected.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.TrainPersonGroup(System.String)">
+            <summary>
+            Trains a PersonGroup with the given <c>personGroupId</c>.
+            </summary>
+            <param name="personGroupId">The Id of the PersonGroup to train.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetGroupTrainingStatus(System.String)">
+            <summary>
+            Gets the <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>: notstarted, running, succeeded, failed.
+            </summary>
+            <returns>The group training status.</returns>
+            <param name="personGroupId">The Id or the PersonGroup to get training status for.</param>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.TrainPersonGroup(System.String)"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPeopleForGroup(System.String)">
+            <summary>
+            Gets the group's list of <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> for the group.</returns>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to get people for.</param>
+            <remarks>Note that this method does not perform or respect any caching.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.CreatePerson(System.String,System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the given name and (optionally) custom user data.
+            </summary>
+            <returns>The newly created person's Id.</returns>
+            <param name="personName">The name of the new person.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> this person will be a part of.</param>
+            <param name="userData">A custom user data string to store with the person.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.UpdatePerson(System.String,System.String,System.String,System.String)">
+            <summary>
+            Updates a <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the given name and (optionally) custom user data.
+            </summary>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to update.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> this person is a part of.</param>
+            <param name="personName">The name of the updated person.</param>
+            <param name="userData">A custom user data string to store with the person.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePerson(System.String,System.String)">
+            <summary>
+            Deletes the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the given <c>personId</c>.
+            </summary>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to delete.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPerson(System.String,System.String)">
+            <summary>
+            Gets the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the specified <c>personId</c> and belonging to the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> with the given <c>personGroupId</c>.
+            </summary>
+            <returns>The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.</returns>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to get.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.AddFaceForPerson(System.String,System.String,Xamarin.Cognitive.Face.Model.Face,System.IO.Stream,System.String)">
+            <summary>
+            Adds (saves/persists) a detected <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to add a face for.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="face">The detected <see cref="N:Xamarin.Cognitive.Face"/> to add.  This will typically come from the Detect method.</param>
+            <param name="stream">A stream to the image data containing the Face.</param>
+            <param name="userData">A custom user data string to store with the person's Face.</param>
+            <remarks>The Stream passed in to this method will NOT be disposed and should be handled by the calling client code.  
+            The image stream provided should be the same original image that was used to detect the Face - the <see cref="T:Xamarin.Cognitive.Face.Model.FaceRectangle"/> must be valid and should contain the correct face.</remarks>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.IO.Stream,System.Boolean,Xamarin.Cognitive.Face.Model.FaceAttributeType[])"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePersonFace(System.String,System.String,System.String)">
+            <summary>
+            Deletes a persisted <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> the given <see cref="N:Xamarin.Cognitive.Face"/> belongs to.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="faceId">The Id of a persisted <see cref="N:Xamarin.Cognitive.Face"/> to delete.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetFaceForPerson(System.String,System.String,System.String)">
+            <summary>
+            Gets a persisted <see cref="N:Xamarin.Cognitive.Face"/> with the given <c>persistedFaceId</c> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> the given <see cref="N:Xamarin.Cognitive.Face"/> belongs to.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="persistedFaceId">The Id of the persisted <see cref="N:Xamarin.Cognitive.Face"/> to retrieve.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.FindSimilar(System.String,System.String[],System.Int32,Xamarin.Cognitive.Face.Model.FindSimilarMatchMode)">
+            <summary>
+            Finds faces similar to a target face in the given list of face Ids.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.SimilarFaceResult"/> indicating similar face(s) and associated confidence factor.</returns>
+            <param name="targetFaceId">The Id of the target <see cref="N:Xamarin.Cognitive.Face"/> to find similar faces to.</param>
+            <param name="faceIds">The face list containing face Ids to compare to the target Face.</param>
+            <param name="maxCandidatesReturned">The maximum number of candidate faces to return.</param>
+            <param name="matchMode">The <see cref="T:Xamarin.Cognitive.Face.Model.FindSimilarMatchMode"/> to use when comparing - matchFace or matchPerson (default).</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GroupFaces(System.String[])">
+            <summary>
+            Groups similar faces within the list of target face Ids and returns a <see cref="T:Xamarin.Cognitive.Face.Model.GroupResult"/> with results of the grouping operation.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.GroupResult"/> containing <see cref="T:Xamarin.Cognitive.Face.Model.FaceGroup"/> groups with similar faces and any leftover/messy group.</returns>
+            <param name="targetFaceIds">The list of target <see cref="N:Xamarin.Cognitive.Face"/> Ids to perform a grouping operation on.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Identify(System.String,System.String[],System.Int32)">
+            <summary>
+            Attempts to Identify the given list of detected face Ids against a trained <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> containing 1 or more faces.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.IdentificationResult"/> containing <see cref="T:Xamarin.Cognitive.Face.Model.CandidateResult"/> indicating potential identification matches and the confidence factor for the match.</returns>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to identify a <see cref="N:Xamarin.Cognitive.Face"/> against.</param>
+            <param name="detectedFaceIds">A list of detected face Ids to use for the identification.</param>
+            <param name="maxNumberOfCandidates">The max number of candidate matches to return.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Verify(System.String,System.String)">
+            <summary>
+            Verifies that the specified faces with Face Ids belong to the same person.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.VerifyResult"/> indicating equivalence, with a confidence factor.</returns>
+            <param name="face1Id">The Id of the first <see cref="N:Xamarin.Cognitive.Face"/>.</param>
+            <param name="face2Id">The Id of the second <see cref="N:Xamarin.Cognitive.Face"/>.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Verify(System.String,System.String,System.String)">
+            <summary>
+            Verifies that the given face with <c>faceId</c> belongs to the specified <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with <c>personId</c>.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.VerifyResult"/> indicating equivalence, with a confidence factor.</returns>
+            <param name="faceId">The Id of the <see cref="N:Xamarin.Cognitive.Face"/> to verify.</param>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to verify the face against.</param>
+            <param name="personGroupId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the given person belongs to.</param>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.FaceClient.Shared">
+            <summary>
+            Gets the static/shared instance of this Singleton FaceClient client.
+            </summary>
+            <value>The static/shared instance of this Singleton FaceClient client.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.FaceClient.SubscriptionKey">
+            <summary>
+            Gets or sets the subscription key to be used for this FaceClient client.
+            </summary>
+            <value>The subscription key.</value>
+            <remarks>Endpoints and subscription keys are linked - you must have an API key for the endpoint being used.</remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.FaceClient.Endpoint">
+            <summary>
+            Gets or sets the Azure Face API endpoint to use for this FaceClient client.
+            </summary>
+            <value>The endpoint.</value>
+            <remarks>Defaults to WestUS.  Endpoints and subscription keys are linked - you must have an API key for the endpoint being used.</remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.FaceClient.Groups">
+            <summary>
+            Gets a cached list of the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> groups that have already been loaded this session via the <see cref="M:Xamarin.Cognitive.Face.FaceClient.GetPersonGroups(System.Boolean)"/> or similar methods.
+            </summary>
+            <value>A list of <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> objects.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.LoadGroupsWithPeople(System.Boolean)">
+            <summary>
+            Retrieves the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> groups, and any <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> people that are a part of the group.
+            </summary>
+            <returns>The list of groups with people.</returns>
+            <param name="forceRefresh">If set to <c>true</c>, force refresh of the groups list.  This forces all groups to reload from the server and clears the currently cached list of groups.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPersonGroups(System.Boolean)">
+            <summary>
+            Retrieves the list of all <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>.
+            </summary>
+            <returns>The list of groups.</returns>
+            <param name="forceRefresh">If set to <c>true</c>, force refresh of the groups list.  This forces all groups to reload from the server and clears the currently cached list of groups.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPersonGroup(System.String)">
+            <summary>
+            Retrieves the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> with the given Id.
+            </summary>
+            <returns>The person group.</returns>
+            <param name="personGroupId">Person group identifier.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.CreatePersonGroup(System.String,System.String)">
+            <summary>
+            Creates the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> with the given name and (optionally) custom user data.
+            </summary>
+            <returns>The person group.</returns>
+            <param name="groupName">The name of the new group.</param>
+            <param name="userData">A custom user data string to store with the group.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.UpdatePersonGroup(Xamarin.Cognitive.Face.Model.PersonGroup,System.String,System.String)">
+            <summary>
+            Updates the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> with the given name and (optionally) custom user data.
+            </summary>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to update.</param>
+            <param name="groupName">The updated name of the group.</param>
+            <param name="userData">An updated custom user data string to store with the group.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePersonGroup(Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Deletes the <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> group.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.TrainPersonGroup(Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Queues a <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> training task.  The training task may not be started immediately.
+            </summary>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to begin a training task for.</param>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.GetGroupTrainingStatus(Xamarin.Cognitive.Face.Model.PersonGroup)"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetGroupTrainingStatus(Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Gets the <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>: notstarted, running, succeeded, failed.
+            </summary>
+            <returns>The group training status.</returns>
+            <param name="personGroup"><see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to get training status for.</param>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.TrainPersonGroup(Xamarin.Cognitive.Face.Model.PersonGroup)"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPeopleForGroup(Xamarin.Cognitive.Face.Model.PersonGroup,System.Boolean)">
+            <summary>
+            Gets the group's list of <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> for the group.</returns>
+            <param name="personGroup"><see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to get people for.</param>
+            <param name="forceRefresh">If set to <c>true</c>, force refresh of the cached list of people for this group.  This forces all people for this group to reload from the server and clears the currently cached list of people for this group.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.CreatePerson(System.String,Xamarin.Cognitive.Face.Model.PersonGroup,System.String)">
+            <summary>
+            Creates a <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the given name and (optionally) custom user data.
+            </summary>
+            <returns>The person.</returns>
+            <param name="personName">The name of the new person.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> this person will be a part of.</param>
+            <param name="userData">A custom user data string to store with the person.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.UpdatePerson(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup,System.String,System.String)">
+            <summary>
+            Updates a <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the given name and (optionally) custom user data.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to update.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> this person is a part of.</param>
+            <param name="personName">The name of the updated person.</param>
+            <param name="userData">A custom user data string to store with the person.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePerson(Xamarin.Cognitive.Face.Model.PersonGroup,Xamarin.Cognitive.Face.Model.Person)">
+            <summary>
+            Deletes the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to delete.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetPerson(Xamarin.Cognitive.Face.Model.PersonGroup,System.String)">
+            <summary>
+            Gets the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> with the specified Id and belonging to the given <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>.
+            </summary>
+            <returns>The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.</returns>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="personId">The Id of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to get.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.AddFaceForPerson(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup,Xamarin.Cognitive.Face.Model.Face,System.Func{System.IO.Stream},System.String)">
+            <summary>
+            Adds (saves/persists) a detected <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to add a face for.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="face">The detected <see cref="N:Xamarin.Cognitive.Face"/> to add.  This will typically come from the Detect method.</param>
+            <param name="photoStreamProvider">A <see cref="T:System.Func`1"/> that provides a stream to the image data containing the Face.</param>
+            <param name="userData">A custom user data string to store with the person's Face.</param>
+            <remarks>Note that photoStreamProvider should return a stream that can be disposed - this will be used in a using() statement on a background thread.  
+            The image stream provided should be the same original image that was used to detect the Face - the <see cref="T:Xamarin.Cognitive.Face.Model.FaceRectangle"/> must be valid and should contain the correct face.</remarks>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.Func{System.IO.Stream})"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.AddFaceForPerson(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup,Xamarin.Cognitive.Face.Model.Face,System.IO.Stream,System.String)">
+            <summary>
+            Adds (saves/persists) a detected <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to add a face for.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="face">The detected <see cref="N:Xamarin.Cognitive.Face"/> to add.  This will typically come from the Detect method.</param>
+            <param name="stream">A stream to the image data containing the Face.</param>
+            <param name="userData">A custom user data string to store with the person's Face.</param>
+            <remarks>The Stream passed in to this method will NOT be disposed and should be handled by the calling client code.  
+            The image stream provided should be the same original image that was used to detect the Face - the <see cref="T:Xamarin.Cognitive.Face.Model.FaceRectangle"/> must be valid and should contain the correct face.</remarks>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.IO.Stream,System.Boolean,Xamarin.Cognitive.Face.Model.FaceAttributeType[])"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DeletePersonFace(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup,Xamarin.Cognitive.Face.Model.Face)">
+            <summary>
+            Deletes a persisted <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> the given <see cref="N:Xamarin.Cognitive.Face"/> belongs to.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="face">The persisted <see cref="N:Xamarin.Cognitive.Face"/> to delete.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetFaceForPerson(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup,System.String)">
+            <summary>
+            Gets a persisted <see cref="N:Xamarin.Cognitive.Face"/> with the given <c>persistedFaceId</c> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> the given <see cref="N:Xamarin.Cognitive.Face"/> belongs to.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <param name="persistedFaceId">The Id of the persisted <see cref="N:Xamarin.Cognitive.Face"/> to retrieve.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GetFacesForPerson(Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Gets a list of all persisted <see cref="N:Xamarin.Cognitive.Face"/> for the given <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> the given <see cref="N:Xamarin.Cognitive.Face"/> belongs to.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the person is a part of.</param>
+            <remarks>Note that this will clear any existing faces currently in the Faces collection of the <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.  
+            Every persisted face Id found in the Person's FaceIds collection will be retrieved.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.LoadFacesForAllGroupPeople(Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Loads all persisted <see cref="N:Xamarin.Cognitive.Face"/> for each <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> in the given <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>.
+            </summary>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to load faces for.</param>
+            <remarks>Note that this will clear any existing faces currently in the Faces collection of any <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.  
+            Every persisted face Id found in each Person's FaceIds collection will be retrieved.  
+            This method assumes group people have already been loaded.</remarks>
+            <seealso cref="M:Xamarin.Cognitive.Face.FaceClient.GetPeopleForGroup(Xamarin.Cognitive.Face.Model.PersonGroup,System.Boolean)"/>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.Func{System.IO.Stream})">
+            <summary>
+            Returns a list of <see cref="N:Xamarin.Cognitive.Face"/> that have been detected in the given image stream (loaded via <c>photoStreamProvider</c>).
+            </summary>
+            <param name="photoStreamProvider">A <see cref="T:System.Func`1"/> that provides a stream to the image data containing the image to run facial detection on.</param>
+            <remarks>Note that photoStreamProvider should return a stream that can be disposed - this will be used in a using() statement on a background thread.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.Func{System.IO.Stream},Xamarin.Cognitive.Face.Model.FaceAttributeType[])">
+            <summary>
+            Returns a list of <see cref="N:Xamarin.Cognitive.Face"/> that have been detected in the given image stream (loaded via <c>photoStreamProvider</c>).
+            </summary>
+            <param name="photoStreamProvider">A <see cref="T:System.Func`1"/> that provides a stream to the image data containing the image to run facial detection on.</param>
+            <param name="attributes">A list of any <see cref="T:Xamarin.Cognitive.Face.Model.FaceAttributeType"/> to detect and return, if any.</param>
+            <remarks>Note that photoStreamProvider should return a stream that can be disposed - this will be used in a using() statement on a background thread.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.Func{System.IO.Stream},System.Boolean,Xamarin.Cognitive.Face.Model.FaceAttributeType[])">
+            <summary>
+            Returns a list of <see cref="N:Xamarin.Cognitive.Face"/> that have been detected in the given image stream (loaded via <c>photoStreamProvider</c>).
+            </summary>
+            <param name="photoStreamProvider">A <see cref="T:System.Func`1"/> that provides a stream to the image data containing the image to run facial detection on.</param>
+            <param name="returnLandmarks"><c>true</c> to return facial landmarks, otherwise <c>false</c></param>
+            <param name="attributes">A list of any <see cref="T:Xamarin.Cognitive.Face.Model.FaceAttributeType"/> to detect and return, if any.</param>
+            <remarks>Note that photoStreamProvider should return a stream that can be disposed - this will be used in a using() statement on a background thread.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.DetectFacesInPhoto(System.IO.Stream,System.Boolean,Xamarin.Cognitive.Face.Model.FaceAttributeType[])">
+            <summary>
+            Returns a list of <see cref="N:Xamarin.Cognitive.Face"/> that have been detected in the given image stream.
+            </summary>
+            <param name="photoStream">A <see cref="T:System.IO.Stream"/> to the image data containing the image to run facial detection on.</param>
+            <param name="returnLandmarks"><c>true</c> to return facial landmarks, otherwise <c>false</c></param>
+            <param name="attributes">A list of any <see cref="T:Xamarin.Cognitive.Face.Model.FaceAttributeType"/> to detect and return, if any.</param>
+            <remarks>The Stream passed in to this method will NOT be disposed and should be handled by the calling client code.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.FindSimilar(Xamarin.Cognitive.Face.Model.Face,System.Collections.Generic.List{Xamarin.Cognitive.Face.Model.Face})">
+            <summary>
+            Finds faces similar to <c>targetFace</c> in the given <c>faceList</c>.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.SimilarFaceResult"/> indicating similar face(s) and associated confidence factor.</returns>
+            <param name="targetFace">The target <see cref="N:Xamarin.Cognitive.Face"/> to find similar faces to.</param>
+            <param name="faceList">The face list containing faces to compare to <c>targetFace</c>.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.FindSimilar(Xamarin.Cognitive.Face.Model.Face,System.Collections.Generic.List{Xamarin.Cognitive.Face.Model.Face},System.Int32)">
+            <summary>
+            Finds faces similar to <c>targetFace</c> in the given <c>faceList</c>.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.SimilarFaceResult"/> indicating similar face(s) and associated confidence factor.</returns>
+            <param name="targetFace">The target <see cref="N:Xamarin.Cognitive.Face"/> to find similar faces to.</param>
+            <param name="faceList">The face list containing faces to compare to <c>targetFace</c>.</param>
+            <param name="maxCandidatesReturned">The maximum number of candidate faces to return.</param>
+            <remarks><c>maxCandidatesReturned</c> is not currently respsected on iOS due to native SDK limiations.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.FindSimilar(Xamarin.Cognitive.Face.Model.Face,System.Collections.Generic.List{Xamarin.Cognitive.Face.Model.Face},System.Int32,Xamarin.Cognitive.Face.Model.FindSimilarMatchMode)">
+            <summary>
+            Finds faces similar to <c>targetFace</c> in the given <c>faceList</c>.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.SimilarFaceResult"/> indicating similar face(s) and associated confidence factor.</returns>
+            <param name="targetFace">The target <see cref="N:Xamarin.Cognitive.Face"/> to find similar faces to.</param>
+            <param name="faceList">The face list containing faces to compare to <c>targetFace</c>.</param>
+            <param name="maxCandidatesReturned">The maximum number of candidate faces to return.</param>
+            <param name="matchMode">The <see cref="T:Xamarin.Cognitive.Face.Model.FindSimilarMatchMode"/> to use when comparing - matchFace or matchPerson (default).</param>
+            <remarks><c>maxCandidatesReturned</c> and <c>matchMode</c> are not currently respsected on iOS due to native SDK limiations.</remarks>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.GroupFaces(System.Collections.Generic.List{Xamarin.Cognitive.Face.Model.Face})">
+            <summary>
+            Groups similar faces within the <c>targetFaces</c> list and returns a <see cref="T:Xamarin.Cognitive.Face.Model.GroupResult"/> with results of the grouping operation.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.GroupResult"/> containing <see cref="T:Xamarin.Cognitive.Face.Model.FaceGroup"/> groups with similar faces and any leftover/messy group.</returns>
+            <param name="targetFaces">The list of target <see cref="N:Xamarin.Cognitive.Face"/> to perform a grouping operation on.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Identify(Xamarin.Cognitive.Face.Model.PersonGroup,Xamarin.Cognitive.Face.Model.Face,System.Int32)">
+            <summary>
+            Attempts to Identify the given <see cref="N:Xamarin.Cognitive.Face"/> detectedFace against a trained <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> containing 1 or more faces.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.IdentificationResult"/> containing <see cref="T:Xamarin.Cognitive.Face.Model.CandidateResult"/> indicating potential identification matches and the confidence factor for the match.</returns>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to identify a <see cref="N:Xamarin.Cognitive.Face"/> against.</param>
+            <param name="detectedFace">A detected face to use for the identification.</param>
+            <param name="maxNumberOfCandidates">The max number of candidate matches to return.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Identify(Xamarin.Cognitive.Face.Model.PersonGroup,System.Collections.Generic.IEnumerable{Xamarin.Cognitive.Face.Model.Face},System.Int32)">
+            <summary>
+            Attempts to Identify the given <see cref="N:Xamarin.Cognitive.Face"/> list <c>detectedFaces</c> against a trained <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> containing 1 or more faces.
+            </summary>
+            <returns>A list of <see cref="T:Xamarin.Cognitive.Face.Model.IdentificationResult"/> containing <see cref="T:Xamarin.Cognitive.Face.Model.CandidateResult"/> indicating potential identification matches and the confidence factor for the match.</returns>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> to identify a <see cref="N:Xamarin.Cognitive.Face"/> against.</param>
+            <param name="detectedFaces">A list of detected faces to use for the identification.</param>
+            <param name="maxNumberOfCandidates">The max number of candidate matches to return.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Verify(Xamarin.Cognitive.Face.Model.Face,Xamarin.Cognitive.Face.Model.Face)">
+            <summary>
+            Verifies that the specified faces belong to the same person.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.VerifyResult"/> indicating equivalence, with a confidence factor.</returns>
+            <param name="face1">The first <see cref="N:Xamarin.Cognitive.Face"/>.</param>
+            <param name="face2">The second <see cref="N:Xamarin.Cognitive.Face"/>.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.FaceClient.Verify(Xamarin.Cognitive.Face.Model.Face,Xamarin.Cognitive.Face.Model.Person,Xamarin.Cognitive.Face.Model.PersonGroup)">
+            <summary>
+            Verifies that the given face belongs to the specified <see cref="T:Xamarin.Cognitive.Face.Model.Person"/>.
+            </summary>
+            <returns>A <see cref="T:Xamarin.Cognitive.Face.Model.VerifyResult"/> indicating equivalence, with a confidence factor.</returns>
+            <param name="face">The <see cref="N:Xamarin.Cognitive.Face"/> to verify.</param>
+            <param name="person">The <see cref="T:Xamarin.Cognitive.Face.Model.Person"/> to verify the <c>face</c> against.</param>
+            <param name="personGroup">The <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> the given person belongs to.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Accessories">
+            <summary>
+            The accessories the detected face was found to contain.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Accessories.AccessoriesList">
+            <summary>
+            Gets a list of all accessories the face has.
+            </summary>
+            <value>The accessories list.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Accessories.AccessoriesString">
+            <summary>
+            Gets or sets the string representation of the accessories.
+            </summary>
+            <value>The accessories string.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Accessories.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Accessories"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Accessories"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.AccessoryType">
+            <summary>
+            Accessory types on face or around face area, including headwear, glasses and mask.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.AccessoryType.Headwear">
+            <summary>
+            Headwear.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.AccessoryType.Glasses">
+            <summary>
+            Glasses.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.AccessoryType.Mask">
+            <summary>
+            Mask
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Attribute">
+            <summary>
+            Base class for Attributes.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Attribute.BuildTypeList(System.ValueTuple{System.String,System.Boolean}[])">
+            <summary>
+            Builds the string list of all input types, delimited by '|'.
+            </summary>
+            <returns>The type list.</returns>
+            <param name="inputTypes">Input types.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Attribute.BuildTypeList(System.ValueTuple{System.String,System.Single}[])">
+            <summary>
+            Builds the string list of all input types, delimited by '|'.
+            </summary>
+            <returns>The type list.</returns>
+            <param name="inputTypes">Input types.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Blur">
+            <summary>
+            Blur level of the face.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Blur.BlurLevel">
+            <summary>
+            Gets or sets the Blur level of the face. The level include `Low`, `Medium` and `High`.
+            </summary>
+            <value>The blur level.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Blur.Value">
+            <summary>
+            Gets or sets the blur value.  Larger value means the face is more blurry.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Blur.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Blur"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Blur"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.BlurLevel">
+            <summary>
+            Blur levels.  Blur level of the face. The level include `Low`, `Medium` and `High`.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.BlurLevel.Low">
+            <summary>
+            Low.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.BlurLevel.Medium">
+            <summary>
+            Medium.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.BlurLevel.High">
+            <summary>
+            High.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Exposure">
+            <summary>
+            Exposure level of the face.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Exposure.ExposureLevel">
+            <summary>
+            Gets or sets the exposure level of the face.
+            </summary>
+            <value>The exposure level.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Exposure.Value">
+            <summary>
+            Gets or sets the exposure value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Exposure.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Exposure"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Exposure"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.ExposureLevel">
+            <summary>
+            Exposure level of the face. The level include `GoodExposure`, `OverExposure` and `UnderExposure`.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.ExposureLevel.UnderExposure">
+            <summary>
+            Under Exposure.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.ExposureLevel.GoodExposure">
+            <summary>
+            Good Exposure
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.ExposureLevel.OverExposure">
+            <summary>
+            Over Exposure
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceAttributes">
+            <summary>
+            Represents all facial attributes of a given Face.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Age">
+            <summary>
+            Gets or sets the age.  An age number in years.
+            </summary>
+            <value>The age.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.SmileIntensity">
+            <summary>
+            Gets or sets the smile intensity.  Smile intensity, a number between [0,1].
+            </summary>
+            <value>The smile intensity.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Gender">
+            <summary>
+            Gets or sets the gender.  Male or female.
+            </summary>
+            <value>The gender.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Glasses">
+            <summary>
+            Gets or sets the glasses.  Glasses type: Possible values are 'NoGlasses', 'ReadingGlasses', 'Sunglasses', 'SwimmingGoggles'.
+            </summary>
+            <value>The glasses.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.FacialHair">
+            <summary>
+            Gets or sets the facial hair.  Consists of lengths of three facial hair areas: moustache, beard and sideburns.
+            </summary>
+            <value>The facial hair.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.HeadPose">
+            <summary>
+            Gets or sets the head pose.  3-D roll/yew/pitch angles for face direction.  Pitch value is a reserved field and will always return 0.
+            </summary>
+            <value>The head pose.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Emotion">
+            <summary>
+            Gets or sets the emotion.  Emotions intensity expressed by the face, including anger, contempt, disgust, fear, happiness, neutral, sadness and surprise.
+            </summary>
+            <value>The emotion.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Hair">
+            <summary>
+            Gets or sets the hair.  Return face features indicating whether the hair is visible, bald or not also including hair color if available.
+            </summary>
+            <value>The hair.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Makeup">
+            <summary>
+            Gets or sets the makeup.  Whether face area (eye, lip) is made-up or not.
+            </summary>
+            <value>The makeup.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Occlusion">
+            <summary>
+            Gets or sets the occlusion.  Whether face area (forehead, eye, mouth) is occluded or not.
+            </summary>
+            <value>The occlusion.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Accessories">
+            <summary>
+            Gets or sets the accessories.  Accessory types on face or around face area, including headwear, glasses and mask.
+            </summary>
+            <value>The accessories.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Blur">
+            <summary>
+            Gets or sets the blur.  Blur level of the face. The level include `Low`, `Medium` and `High`. Larger value means more blury the face is.
+            </summary>
+            <value>The blur.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Exposure">
+            <summary>
+            Gets or sets the exposure.  Exposure level of the face. The level include `GoodExposure`, `OverExposure` and `UnderExposure`.
+            </summary>
+            <value>The exposure.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceAttributes.Noise">
+            <summary>
+            Gets or sets the noise.  Noise level of the face. The level include `Low`, `Medium` and `High`. Larger value means more noisy the face is.
+            </summary>
+            <value>The noise.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceAttributeType">
+            <summary>
+            Face attribute type.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Age">
+            <summary>
+            The approximate age of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Gender">
+            <summary>
+            The gender of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Smile">
+            <summary>
+            Smile intensity.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Glasses">
+            <summary>
+            Glasses type of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.FacialHair">
+            <summary>
+            Facial hair found on the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.HeadPose">
+            <summary>
+            The head pose of the head/face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Emotion">
+            <summary>
+            The emotion detected on the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Hair">
+            <summary>
+            The hair of the head/face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Makeup">
+            <summary>
+            The makeup found on the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Occlusion">
+            <summary>
+            Represents the occlusion of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Accessories">
+            <summary>
+            The accessories found on the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Blur">
+            <summary>
+            The blur value of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Exposure">
+            <summary>
+            The exposure value of the face.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FaceAttributeType.Noise">
+            <summary>
+            The noise value of the face.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceEmotion">
+            <summary>
+            Emotion intensity expressed by the face, including anger, contempt, disgust, fear, happiness, neutral, sadness and surprise.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Anger">
+            <summary>
+            Gets or sets the anger value.
+            </summary>
+            <value>The anger.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Contempt">
+            <summary>
+            Gets or sets the contempt value.
+            </summary>
+            <value>The contempt.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Disgust">
+            <summary>
+            Gets or sets the disgust value.
+            </summary>
+            <value>The disgust.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Fear">
+            <summary>
+            Gets or sets the fear value.
+            </summary>
+            <value>The fear.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Happiness">
+            <summary>
+            Gets or sets the happiness value.
+            </summary>
+            <value>The happiness.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Neutral">
+            <summary>
+            Gets or sets the neutral value.
+            </summary>
+            <value>The neutral.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Sadness">
+            <summary>
+            Gets or sets the sadness value.
+            </summary>
+            <value>The sadness.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.Surprise">
+            <summary>
+            Gets or sets the surprise value.
+            </summary>
+            <value>The surprise.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.MostEmotionValue">
+            <summary>
+            Gets or sets the most emotion value.
+            </summary>
+            <value>The most emotion value.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceEmotion.MostEmotion">
+            <summary>
+            Gets or sets the most emotion name.
+            </summary>
+            <value>The most emotion.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.FaceEmotion.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FaceEmotion"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FaceEmotion"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceHeadPose">
+            <summary>
+            Face head pose: 3-D roll/yew/pitch angles for face direction.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceHeadPose.Roll">
+            <summary>
+            Gets or sets the roll value.
+            </summary>
+            <value>The roll.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceHeadPose.Yaw">
+            <summary>
+            Gets or sets the yaw value.
+            </summary>
+            <value>The yaw.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.FaceHeadPose.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FaceHeadPose"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FaceHeadPose"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FacialHair">
+            <summary>
+            Facial hair: Consists of lengths of three facial hair areas: moustache, beard and sideburns.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FacialHair.Mustache">
+            <summary>
+            Gets or sets the mustache value.
+            </summary>
+            <value>The mustache.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FacialHair.Beard">
+            <summary>
+            Gets or sets the beard value.
+            </summary>
+            <value>The beard.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FacialHair.Sideburns">
+            <summary>
+            Gets or sets the sideburns value.
+            </summary>
+            <value>The sideburns.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.FacialHair.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FacialHair"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.FacialHair"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Glasses">
+            <summary>
+            Glasses type: Possible values are 'NoGlasses', 'ReadingGlasses', 'Sunglasses', 'SwimmingGoggles'.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.Glasses.NoGlasses">
+            <summary>
+            No glasses.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.Glasses.ReadingGlasses">
+            <summary>
+            Reading glasses.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.Glasses.Sunglasses">
+            <summary>
+            Sunglasses.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.Glasses.SwimmingGoggles">
+            <summary>
+            Swimming goggles.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Hair">
+            <summary>
+            Hair attribute: whether the hair is visible, baldness indicator, and also including hair color if available.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Hair.Bald">
+            <summary>
+            Gets or sets the baldness value.
+            </summary>
+            <value>The bald value.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Hair.Invisible">
+            <summary>
+            Gets or sets a value indicating whether this the hair is invisible.
+            </summary>
+            <value><c>true</c> if invisible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Hair.HairColor">
+            <summary>
+            Gets or sets a Dictionary with hair colors and associated confidence values for each color detected.
+            </summary>
+            <value>The color of the hair.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Hair.HairString">
+            <summary>
+            Gets or sets a string indicating the hair attributes.
+            </summary>
+            <value>The hair string.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Hair.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Hair"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Hair"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.HairColorType">
+            <summary>
+            Hair color type.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.White">
+            <summary>
+            White
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Gray">
+            <summary>
+            Gray
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Blond">
+            <summary>
+            Blond
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Brown">
+            <summary>
+            Brown
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Red">
+            <summary>
+            Red
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Black">
+            <summary>
+            Black
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.HairColorType.Other">
+            <summary>
+            Other
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Makeup">
+            <summary>
+            Makeup: Whether face area (eye, lip) is made-up or not.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Makeup.EyeMakeup">
+            <summary>
+            Gets or sets a value indicating whether the face has eye makeup.
+            </summary>
+            <value><c>true</c> if eye makeup; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Makeup.LipMakeup">
+            <summary>
+            Gets or sets a value indicating whether the face has lip makeup.
+            </summary>
+            <value><c>true</c> if lip makeup; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Makeup.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Makeup"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Makeup"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Noise">
+            <summary>
+            Noise: the noise level of the face.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Noise.NoiseLevel">
+            <summary>
+            Gets or sets the noise level.  The level include `Low`, `Medium` and `High`.
+            </summary>
+            <value>The noise level.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Noise.Value">
+            <summary>
+            Gets or sets the noise value.  Larger value means more noisy the face is.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Noise.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Noise"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Noise"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.NoiseLevel">
+            <summary>
+            Noise level.  The level include `Low`, `Medium` and `High`.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.NoiseLevel.Low">
+            <summary>
+            Low.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.NoiseLevel.Medium">
+            <summary>
+            Medium.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.NoiseLevel.High">
+            <summary>
+            High.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Occlusion">
+            <summary>
+            Occlusion: Whether face area (forehead, eye, mouth) is occluded or not.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Occlusion.ForeheadOccluded">
+            <summary>
+            Gets or sets a value indicating whether the face's forehead is occluded.
+            </summary>
+            <value><c>true</c> if forehead occluded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Occlusion.EyeOccluded">
+            <summary>
+            Gets or sets a value indicating whether the face's eye is occluded.
+            </summary>
+            <value><c>true</c> if eye occluded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Occlusion.MouthOccluded">
+            <summary>
+            Gets or sets a value indicating whether the face's mouth is occluded.
+            </summary>
+            <value><c>true</c> if mouth occluded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.Occlusion.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Occlusion"/>.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.Cognitive.Face.Model.Occlusion"/>.</returns>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.CandidateResult">
+            <summary>
+            Candidate result is a possible identifcation match in an Identify operation.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.CandidateResult.Person">
+            <summary>
+            Gets or sets the person this result is for.
+            </summary>
+            <value>The person.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.CandidateResult.PersonId">
+            <summary>
+            Gets or sets the person Id this result is for.
+            </summary>
+            <value>The person identifier.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.CandidateResult.Confidence">
+            <summary>
+            Gets or sets the confidence factor of the match.
+            </summary>
+            <value>The confidence.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Face">
+            <summary>
+            Represents a Face detected or persisted/saved via the Face API.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.ThumbnailPath">
+            <summary>
+            Gets or sets a full path to the thumbnail image stored for this Face.
+            </summary>
+            <value>The thumbnail path.</value>
+            <remarks>Note that the Face API does not support retrieving face images for stored faces.  Use this path to save/load face images in client apps.</remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.FileName">
+            <summary>
+            Gets the name of the file that can be used for saving/loading this Face's thumbnail image.
+            </summary>
+            <value>The name of the file.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.FaceRectangle">
+            <summary>
+            Gets or sets the face rectangle that defines the bounds of this Face.
+            </summary>
+            <value>The face rectangle.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.Landmarks">
+            <summary>
+            Gets or sets the face landmarks for this Face.
+            </summary>
+            <value>The landmarks.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.Attributes">
+            <summary>
+            Gets or sets the <see cref="T:Xamarin.Cognitive.Face.Model.FaceAttributes"/> for this Face.
+            </summary>
+            <value>The attributes.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.HasFacialHair">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.Cognitive.Face.Model.Face"/> has facial hair.
+            </summary>
+            <value><c>true</c> if has facial hair; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.HasMakeup">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.Cognitive.Face.Model.Face"/> has makeup.
+            </summary>
+            <value><c>true</c> if has makeup; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Face.IsOccluded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.Cognitive.Face.Model.Face"/> is occluded.
+            </summary>
+            <value><c>true</c> if is occluded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceGroup">
+            <summary>
+            Face group is a group of Faces returned from a Grouping operation.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceGroup.Title">
+            <summary>
+            Gets or sets the title of this FaceGroup.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceGroup.FaceIds">
+            <summary>
+            Gets or sets the face Ids that were grouped together.
+            </summary>
+            <value>The face identifiers.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceGroup.Faces">
+            <summary>
+            Gets or sets the faces that were grouped together.
+            </summary>
+            <value>The faces.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceLandmarks">
+            <summary>
+            Defines a list of Face landmarks for a Face.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.PupilLeft">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the pupil left face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.PupilRight">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the pupil right face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseTip">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose tip face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.MouthLeft">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the mouth left face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.MouthRight">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the mouth right face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyebrowLeftOuter">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eyebrow left outer face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyebrowLeftInner">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eyebrow left inner face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeLeftOuter">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye left outer face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeLeftTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye left top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeLeftBottom">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye left bottom face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeLeftInner">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye left inner face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyebrowRightInner">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eyebrow right inner face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyebrowRightOuter">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eyebrow right outer face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeRightInner">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye right inner face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeRightTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye right top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeRightBottom">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye right bottom face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.EyeRightOuter">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the eye right outer face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseRootLeft">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose root left face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseRootRight">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose root right face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseLeftAlarTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose left alar top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseRightAlarTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose right alar top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseLeftAlarOutTip">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose left alar out tip face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.NoseRightAlarOutTip">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the nose right alar out tip face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.UpperLipTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the upper lip top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.UpperLipBottom">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the upper lip bottom face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.UnderLipTop">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the under lip top face landmark.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceLandmarks.UnderLipBottom">
+            <summary>
+            Gets or sets a <see cref="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate"/> defining the under lip bottom face landmark.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceModel">
+            <summary>
+            Base class for Face API model classes.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceModel.Id">
+            <summary>
+            Gets or sets the identifier for this object.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceModel.Name">
+            <summary>
+            Gets or sets the name of this object.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceModel.UserData">
+            <summary>
+            Gets or sets the user data for this object.
+            </summary>
+            <value>The user data.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FeatureCoordinate">
+            <summary>
+            Feature coordinate indicates a point within a <see cref="T:Xamarin.Cognitive.Face.Model.FaceRectangle"/> that defines a facial feature.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FeatureCoordinate.X">
+            <summary>
+            Gets or sets the x coordinate of the feature.
+            </summary>
+            <value>The x.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FeatureCoordinate.Y">
+            <summary>
+            Gets or sets the y coordinate of the feature.
+            </summary>
+            <value>The y.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.GroupResult">
+            <summary>
+            Group result is the result returned from a Grouping operation.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.GroupResult.Groups">
+            <summary>
+            Gets or sets the groups that were found in the set of Faces.
+            </summary>
+            <value>The groups.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.GroupResult.MessyGroup">
+            <summary>
+            Gets or sets the messy group.  This will contain any faces not matched/grouped to other faces, if any.
+            </summary>
+            <value>The messy group.</value>
+            <remarks>In this case all faces match into a group, this will be null.</remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.GroupResult.HasGroups">
+            <summary>
+            Gets a value indicating whether this GroupResult has any <see cref="T:Xamarin.Cognitive.Face.Model.FaceGroup"/>.
+            </summary>
+            <value><c>true</c> if has groups; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.IdentificationResult">
+            <summary>
+            A result of an Identify operation.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.IdentificationResult.FaceId">
+            <summary>
+            Gets or sets the Id of the face the identify operation is for.
+            </summary>
+            <value>The face identifier.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.IdentificationResult.Face">
+            <summary>
+            Gets or sets the <see cref="P:Xamarin.Cognitive.Face.Model.IdentificationResult.Face"/> the identify operation is for.
+            </summary>
+            <value>The face.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.IdentificationResult.CandidateResults">
+            <summary>
+            Gets or sets the candidate results.
+            </summary>
+            <value>The candidate results.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.IdentificationResult.CandidateResult">
+            <summary>
+            Gets the first candidate result, if any.
+            </summary>CandidateResult
+            <value>The candidate result.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.IdentificationResult.HasCandidates">
+            <summary>
+            Gets a value indicating whether there are any <see cref="P:Xamarin.Cognitive.Face.Model.IdentificationResult.CandidateResult"/>.
+            </summary>
+            <value><c>true</c> if has candidates; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.Person">
+            <summary>
+            A Person within a <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> that can persist one or more <see cref="T:Xamarin.Cognitive.Face.Model.Face"/> and is used for Identification and Verification operations.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Person.FaceIds">
+            <summary>
+            Gets or sets the persisted/saved face Ids for this Person.  These can be used to restore the <see cref="P:Xamarin.Cognitive.Face.Model.Person.Faces"/> for this Person.
+            </summary>
+            <value>The face identifiers.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.Person.Faces">
+            <summary>
+            Gets or sets the faces loaded for this Person.
+            </summary>
+            <value>The faces.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.PersonGroup">
+            <summary>
+            Person group - a group for grouping and organizing people and their faces.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.PersonGroup.People">
+            <summary>
+            Gets or sets the people for this group.
+            </summary>
+            <value>The people.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.PersonGroup.PeopleLoaded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/> has had its <see cref="P:Xamarin.Cognitive.Face.Model.PersonGroup.People"/> list initialized.
+            </summary>
+            <value><c>true</c> if people loaded; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.SimilarFaceResult">
+            <summary>
+            SimilarFaceResult represents the result of a Find Similar operation.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.SimilarFaceResult.Face">
+            <summary>
+            Gets or sets the similar face that was found.
+            </summary>
+            <value>The face.</value>
+            <remarks>This value will only be populated when the calling method can successfully match <see cref="P:Xamarin.Cognitive.Face.Model.SimilarFaceResult.FaceId"/> to an existing or cached <see cref="P:Xamarin.Cognitive.Face.Model.SimilarFaceResult.Face"/></remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.SimilarFaceResult.FaceId">
+            <summary>
+            Gets or sets the Id of the similar face that was found.
+            </summary>
+            <value>The face identifier.</value>
+            <remarks>This value should always be populated as the result of the Find Similar operation.</remarks>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.SimilarFaceResult.Confidence">
+            <summary>
+            Gets or sets the confidence factore for this Find Similar match/result.
+            </summary>
+            <value>The confidence.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.TrainingStatus">
+            <summary>
+            Training status indicates the training status of a <see cref="T:Xamarin.Cognitive.Face.Model.PersonGroup"/>.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.TrainingStatus.Status">
+            <summary>
+            Gets or sets the Training status.
+            </summary>
+            <value>The training status.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.TrainingStatus.CreatedDateTime">
+            <summary>
+            Gets or sets the created date time.  This is a combined UTC date and time string that describes person group created time.
+            </summary>
+            <value>The created date time.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.TrainingStatus.LastActionDateTime">
+            <summary>
+            Gets or sets the last action date time.  This is the person group last modify time in the UTC, could be null value when the person group is not successfully trained.
+            </summary>
+            <value>The last action date time.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.TrainingStatus.Message">
+            <summary>
+            Gets or sets the message: contains a failure message when training failed (omitted when training succeed).
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType">
+            <summary>
+            Training status type.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType.NotStarted">
+            <summary>
+            Training process is waiting to perform, or the group is new and a training process has not been initiated.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType.Succeeded">
+            <summary>
+            Training has been completed.  This person group is ready for Face - Identify.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType.Failed">
+            <summary>
+            Status failed is often caused by no persons or no persisted faces existing in the person group.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType.Running">
+            <summary>
+            The training process is ongoing.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.TrainingStatus.FromStatus(Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType)">
+            <summary>
+            Creates a <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/> from a <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus.TrainingStatusType"/>
+            </summary>
+            <returns>The <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/>.</returns>
+            <param name="status">The status to use.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Model.TrainingStatus.FromString(System.String)">
+            <summary>
+            Creates a <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/> object from a string representation: notstarted, running, succeeded, failed.
+            </summary>
+            <returns>The <see cref="T:Xamarin.Cognitive.Face.Model.TrainingStatus"/></returns>
+            <param name="status">Status string.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.VerificationType">
+            <summary>
+            Verification type contains the types of verification that can be performed.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.VerificationType.None">
+            <summary>
+            None.  This indicates no verification should happen.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.VerificationType.FaceAndFace">
+            <summary>
+            Verify whether two faces belong to the same person.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.VerificationType.FaceAndPerson">
+            <summary>
+            Verify whether one face belongs to a person.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.VerifyResult">
+            <summary>
+            Represents a results returned from the Face API's Verify function.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.VerifyResult.IsIdentical">
+            <summary>
+            Gets or sets a value indicating whether the face(s) belong to the person.
+            </summary>
+            <value><c>true</c> if is identical; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.VerifyResult.Confidence">
+            <summary>
+            Gets or sets the confidence factor for the <see cref="P:Xamarin.Cognitive.Face.Model.VerifyResult.IsIdentical"/> determination.
+            </summary>
+            <value>The confidence.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FindSimilarMatchMode">
+            <summary>
+            The match mode for a FindSimilar operation.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FindSimilarMatchMode.MatchPerson">
+            <summary>
+            Match person mode.  This is the default mode, and tries to find faces of the same person as possible by using internal same-person thresholds.  
+            It is useful to find a known person's other photos.  Note that an empty list will be returned if no faces pass the internal thresholds.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Model.FindSimilarMatchMode.MatchFace">
+            <summary>
+            Match face mode.  This ignores same-person thresholds and returns ranked similar faces anyway, even the similarity is low.  
+            It can be used in the cases like searching celebrity-looking faces.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Model.FaceRectangle">
+            <summary>
+            Face rectangle defines the boundaries for a <see cref="T:Xamarin.Cognitive.Face.Model.Face"/> within the source image.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceRectangle.Left">
+            <summary>
+            Gets or sets the left edge of the face.
+            </summary>
+            <value>The left.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceRectangle.Top">
+            <summary>
+            Gets or sets the top edge of the face.
+            </summary>
+            <value>The top.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceRectangle.Width">
+            <summary>
+            Gets or sets the width of the face within the image.
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Model.FaceRectangle.Height">
+            <summary>
+            Gets or sets the height of the face within the image.
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Log">
+            <summary>
+            Log helper class to make logging details easier.
+            </summary>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Log.Debug(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Logs a DEBUG <c>message</c> using Debug.WriteLine().
+            </summary>
+            <returns>The debug.</returns>
+            <param name="message">Message.</param>
+            <param name="memberName">Member name.</param>
+            <param name="sourceFilePath">Source file path.</param>
+            <param name="sourceLineNumber">Source line number.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Log.Info(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Logs an INFO <c>message</c> using Debug.WriteLine().
+            </summary>
+            <returns>The info.</returns>
+            <param name="message">Message.</param>
+            <param name="memberName">Member name.</param>
+            <param name="sourceFilePath">Source file path.</param>
+            <param name="sourceLineNumber">Source line number.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Log.Error(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Logs an ERROR <c>message</c> using Debug.WriteLine().
+            </summary>
+            <returns>The error.</returns>
+            <param name="message">Message.</param>
+            <param name="memberName">Member name.</param>
+            <param name="sourceFilePath">Source file path.</param>
+            <param name="sourceLineNumber">Source line number.</param>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.Log.Error(System.Exception,System.String,System.String,System.Int32)">
+            <summary>
+            Logs an ERROR <c>message</c> using Debug.WriteLine().
+            </summary>
+            <returns>The error.</returns>
+            <param name="error">Error.</param>
+            <param name="memberName">Member name.</param>
+            <param name="sourceFilePath">Source file path.</param>
+            <param name="sourceLineNumber">Source line number.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Error">
+            <summary>
+            Error.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Error.Code">
+            <summary>
+            Gets or sets the error code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.Error.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.ErrorDetailException">
+            <summary>
+            Error detail exception is an exception that wraps a native <see cref="T:Xamarin.Cognitive.Face.Error"/> returned from the Face API.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.ErrorDetailException.ErrorDetail">
+            <summary>
+            Gets the error detail.
+            </summary>
+            <value>The error detail.</value>
+        </member>
+        <member name="M:Xamarin.Cognitive.Face.ErrorDetailException.#ctor(Xamarin.Cognitive.Face.Error)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.Cognitive.Face.Domain.ErrorDetailException"/> class.
+            </summary>
+            <param name="error">Error.</param>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.Endpoints">
+            <summary>
+            Valid endpoints to use with the FaceClient.Endpoint property.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Endpoints.WestUS">
+            <summary>
+            The West US endpoint.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Endpoints.EastUS2">
+            <summary>
+            The East US (2) endpoint.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Endpoints.WestCentralUS">
+            <summary>
+            The West Central US endpoint.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Endpoints.WestEurope">
+            <summary>
+            The West Europe endpoint.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.Endpoints.SEAsia">
+            <summary>
+            The Southeast Asia endpoint.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.ErrorCodes">
+            <summary>
+            Error codes returned from the Face API.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.ErrorCodes.TrainingStatus">
+            <summary>
+            Training status operation error codes.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.ErrorCodes.TrainingStatus.PersonGroupNotFound">
+            <summary>
+            The person group was not found.
+            </summary>
+        </member>
+        <member name="F:Xamarin.Cognitive.Face.ErrorCodes.TrainingStatus.PersonGroupNotTrained">
+            <summary>
+            The person group not trained.
+            </summary>
+        </member>
+        <member name="T:Xamarin.Cognitive.Face.ErrorDetail">
+            <summary>
+            Error detail.
+            </summary>
+        </member>
+        <member name="P:Xamarin.Cognitive.Face.ErrorDetail.Error">
+            <summary>
+            Gets or sets the error.
+            </summary>
+            <value>The error.</value>
+        </member>
+    </members>
+</doc>
